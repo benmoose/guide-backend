@@ -24,6 +24,9 @@
 # Mongo Explorer plugin:
 .idea/**/mongoSettings.xml
 
+# Sqlite
+db.sqlite3
+
 ## File-based project format:
 *.iws
 

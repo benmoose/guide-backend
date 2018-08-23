@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    environment:
+      - SECRET_KEY=dev-secret-key
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    volumes:
+      - .:/usr/src/app
+  db:
+    image: postgres:10

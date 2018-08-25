@@ -1,30 +1,24 @@
-import attr
+from guide.common import data_model
 
 from ..models.place import Place as DBPlace
 
 
-@attr.s(slots=True)
+@data_model
 class Location:
-    lat = attr.ib()
-    lng = attr.ib()
-
-    @classmethod
-    def from_dict(cls, data):
-        return cls(
-            lat=data['lat'],
-            lng=data['lng'],
-        )
+    __slots__ = (
+        'lat',
+        'lng',
+    )
 
 
-@attr.s(slots=True)
+@data_model
 class Place:
-    """
-    Data object for a Place.
-    """
-    location = attr.ib()
-    display_name = attr.ib()
-    description = attr.ib()
-    display_address = attr.ib()
+    __slots__ = (
+        'location',
+        'display_name',
+        'display_address',
+        'description',
+    )
 
     @classmethod
     def from_dict(cls, data):
@@ -34,13 +28,6 @@ class Place:
             display_address=data['display_address'],
             description=data.get('description'),
         )
-
-    @classmethod
-    def safe_from_dict(cls, data):
-        try:
-            return cls.from_dict(data)
-        except KeyError:
-            return None
 
     @classmethod
     def from_db_model(cls, db_model):

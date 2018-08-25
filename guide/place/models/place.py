@@ -1,5 +1,7 @@
 import attr
 
+from ..db_models.place import Place as DBPlace
+
 
 @attr.s(slots=True)
 class Location:
@@ -16,6 +18,9 @@ class Location:
 
 @attr.s(slots=True)
 class Place:
+    """
+    Data object for a Place.
+    """
     location = attr.ib()
     display_name = attr.ib()
     description = attr.ib()
@@ -23,12 +28,11 @@ class Place:
 
     @classmethod
     def from_dict(cls, data):
-        location = data['location']
         return cls(
-            location=Location.from_dict(location) if location is not None else None,
-            display_name=data.get('display_name'),
-            display_address=data.get('display_address'),
-            description=data.get('description'),
+            location=Location.from_dict(data['location']),
+            display_name=data['display_name'],
+            display_address=data['display_address'],
+            description=data['description'],
         )
 
     @classmethod
@@ -37,3 +41,12 @@ class Place:
             return cls.from_dict(data)
         except KeyError:
             return None
+
+    def to_db_model(self):
+        return DBPlace(
+            lat=self.location.lat,
+            lng=self.location.lng,
+            display_name=self.display_name,
+            display_address=self.display_address,
+            description=self.description,
+        )

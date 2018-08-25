@@ -2,11 +2,15 @@
 
 ### Setup
 
-The easiest way is to have Docker installed.
+With [Docker installed](https://docs.docker.com/install/), simply run:
 
-With Docker installed, simply run
+```
+docker-compose up
+```
+
+Note: if this is the first time you're running the project, or you've
+removed previously created containers, you need to run migrations first:
 
 ```
 docker-compose run db web python manage.py migrate --noinput
-docker-compose up
 ```

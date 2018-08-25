@@ -26,7 +26,7 @@ $ scripts/run-tests.sh
 
 #### Data Models
 
-This project uses the concept of **data models** to encourage a clean
+This project uses the concept of data models to encourage a clean
 interface between application logic and the Django's database models.
 
 All database models have a corresponding data model. The data model
@@ -35,8 +35,8 @@ is a way that is much easier to manipulate.
 
 All data models contain classmethods to handle converting to and from
 their corresponding database models. They also contain useful
-constructor methods (e.g. `to_dict`) which can help when constructing
+constructor methods (e.g. `from_dict)`) which can help when constructing
 models from HTTP requests. Data models are also responsible for
-validating data (it should never be possible to call `to_db_model()` on
+validating data (it should never be possible to call `to_db_model` on
 a data model that contains incomplete or invalid data according to the
 database model.

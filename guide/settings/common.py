@@ -16,11 +16,19 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+# Environment variables
+DB_NAME = os.environ.get('DB_NAME', 'postgres')
+DB_HOST = os.environ.get('DB_HOST', 'db')
+DB_USER = os.environ.get('DB_USER', 'postgres')
+DB_PASSWORD = os.environ.get('DB_PASSWORD', 'postgres')
+DB_PORT = os.environ.get('DB_PORT', 5432)
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2z7@!qma%ae39$@^5a40pz@3g3pk9u4aix*qv_ajt3x(2%&&%8'
+SECRET_KEY = 'secret-key.local'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -76,10 +84,10 @@ WSGI_APPLICATION = 'guide.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'HOST': 'db',  # defined in docker-compose.yml
-        'PORT': 5432,
+        'NAME': DB_NAME,
+        'USER': DB_USER,
+        'HOST': DB_HOST,
+        'PORT': DB_PORT,
     }
 }
 

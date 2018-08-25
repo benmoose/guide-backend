@@ -23,7 +23,7 @@ class Place:
     @classmethod
     def from_dict(cls, data):
         return cls(
-            location=Location.from_dict(data['location']),
+            location=Location(lat=data['lat'], lng=data['lng']),
             display_name=data['display_name'],
             display_address=data['display_address'],
             description=data.get('description'),

@@ -7,17 +7,15 @@ from .place import Place, Location
 class PlaceTest(TestCase):
     def setUp(self):
         self.data = {
-            'location': {
-                'lat': 10,
-                'lng': 10,
-            },
+            'lat': 10,
+            'lng': 10,
             'display_name': 'Dirty Bones',
             'display_address': 'Top Floor, Kingly Court',
         }
 
     def test_create_place_from_dict(self):
         expected = Place(
-            location=Location(lat=self.data['location']['lat'], lng=self.data['location']['lng']),
+            location=Location(lat=self.data['lat'], lng=self.data['lng']),
             display_name=self.data['display_name'],
             display_address=self.data['display_address'],
             description=None,
@@ -44,8 +42,8 @@ class PlaceTest(TestCase):
 
     def test_from_db_model(self):
         db_model = DBPlace(
-            lat=self.data['location']['lat'],
-            lng=self.data['location']['lng'],
+            lat=self.data['lat'],
+            lng=self.data['lng'],
             display_name=self.data['display_name'],
             display_address=self.data['display_address'],
             description=None,
@@ -58,8 +56,8 @@ class PlaceTest(TestCase):
 
     def test_to_db_model(self):
         expected = DBPlace(
-            lat=self.data['location']['lat'],
-            lng=self.data['location']['lng'],
+            lat=self.data['lat'],
+            lng=self.data['lng'],
             display_name=self.data['display_name'],
             display_address=self.data['display_address'],
             description=None,

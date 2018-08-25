@@ -6,5 +6,5 @@ class Place(models.Model):
     lng = models.DecimalField(max_digits=9, decimal_places=6)
 
     display_name = models.CharField()
-    description = models.TextField()
     display_address = models.CharField(max_length=511)
+    description = models.TextField()

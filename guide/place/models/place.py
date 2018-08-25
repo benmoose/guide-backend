@@ -1,52 +1,12 @@
-import attr
-
-from ..db_models.place import Place as DBPlace
+from django.db import models
 
 
-@attr.s(slots=True)
-class Location:
-    lat = attr.ib()
-    lng = attr.ib()
-
-    @classmethod
-    def from_dict(cls, data):
-        return cls(
-            lat=data['lat'],
-            lng=data['lng'],
-        )
-
-
-@attr.s(slots=True)
-class Place:
+class Place(models.Model):
     """
-    Data object for a Place.
+    The DB model for a Place.
     """
-    location = attr.ib()
-    display_name = attr.ib()
-    description = attr.ib()
-    display_address = attr.ib()
-
-    @classmethod
-    def from_dict(cls, data):
-        return cls(
-            location=Location.from_dict(data['location']),
-            display_name=data['display_name'],
-            display_address=data['display_address'],
-            description=data['description'],
-        )
-
-    @classmethod
-    def safe_from_dict(cls, data):
-        try:
-            return cls.from_dict(data)
-        except KeyError:
-            return None
-
-    def to_db_model(self):
-        return DBPlace(
-            lat=self.location.lat,
-            lng=self.location.lng,
-            display_name=self.display_name,
-            display_address=self.display_address,
-            description=self.description,
-        )
+    lat = models.DecimalField(max_digits=9, decimal_places=6)
+    lng = models.DecimalField(max_digits=9, decimal_places=6)
+    display_name = models.CharField(max_length=255)
+    display_address = models.CharField(max_length=511)
+    description = models.TextField(blank=True)

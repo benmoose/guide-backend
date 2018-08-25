@@ -92,6 +92,9 @@ DATABASES = {
         'USER': DB_USER,
         'HOST': DB_HOST,
         'PORT': DB_PORT,
+        'TEST': {
+            'NAME': f'{DB_NAME}_test',
+        },
     }
 }
 

@@ -4,7 +4,7 @@ services:
   web:
     build: .
     environment:
-      - DJANGO_SETTINGS_MODULE=guide.settings.local
+      - DJANGO_SETTINGS_MODULE=project.settings.local
     ports:
       - "8000:8000"
     depends_on:

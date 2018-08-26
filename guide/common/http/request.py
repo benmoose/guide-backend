@@ -1,7 +1,7 @@
 import json
 
 
-def parse_body_to_dict(request_body):
+def parse_json_request(request_body):
     try:
         return json.loads(request_body)
     except json.JSONDecodeError:

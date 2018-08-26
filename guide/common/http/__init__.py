@@ -1,1 +1,1 @@
-from .request import parse_body_to_dict
+from .request import parse_json_request

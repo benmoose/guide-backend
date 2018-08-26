@@ -1,4 +1,4 @@
-from guide.common.http import parse_body_to_dict
+from guide.common.http import parse_json_request
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
 
@@ -8,7 +8,7 @@ from ..interface.place import get_all_places, persist_place
 
 class ListView(View):
     def post(self, request):
-        data = parse_body_to_dict(request.body)
+        data = parse_json_request(request.body)
 
         place = Place.safe_from_dict(data)
         if place is None:
@@ -19,4 +19,5 @@ class ListView(View):
 
     def get(self, request):
         places = get_all_places()
-        return JsonResponse({})
+        serialised_places = list(map(lambda data: data.to_dict(), places))
+        return JsonResponse(serialised_places, safe=False)

@@ -52,7 +52,7 @@ class PlaceTest(TestCase):
             lng=self.data['lng'],
             display_name=self.data['display_name'],
             display_address=self.data['display_address'],
-            description=None,
+            description='',
         )
 
         place = Place.from_dict(self.data)

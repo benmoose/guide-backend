@@ -60,3 +60,7 @@ class DataModelTest(TestCase):
 
         model = Bar.from_dict(dict(a=1))
         self.assertEqual(model.a, 2)
+
+    def test_to_dict_only_returns_fields_with_values(self):
+        model = self.model(a=1)
+        self.assertEqual(model.to_dict(), dict(a=1))

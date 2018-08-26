@@ -6,7 +6,7 @@ def data_model(cls):
     Decorator which adds useful serialisation methods for data models.
     """
     if not hasattr(cls, 'to_dict'):
-        cls.to_dict = attr.asdict
+        cls.to_dict = to_dict
 
     if not hasattr(cls, 'from_dict'):
         cls.from_dict = classmethod(from_dict)
@@ -33,6 +33,10 @@ def get_attr_ib_dict(slots):
 
 def get_slots_from_fields(cls):
     return tuple(lambda f: f.name, attr.fields(cls))
+
+
+def to_dict(self):
+    return attr.asdict(self, filter=lambda _, v: v is not None)
 
 
 def from_dict(cls, data):

@@ -23,14 +23,6 @@ class PlaceTest(TestCase):
 
         self.assertEqual(Place.from_dict(self.data), expected)
 
-    def test_create_from_args_raises_unless_all_given(self):
-        with self.assertRaises(TypeError):
-            _ = Place(
-                location=Location(lat=0, lng=0),
-                display_name='foo',
-                display_address='foo',
-            )
-
     def test_create_place_from_dict_raises_key_error(self):
         data = { 'display_name': 'foo' }
         with self.assertRaises(KeyError):

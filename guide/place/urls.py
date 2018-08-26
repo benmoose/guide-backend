@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import ListView
+from .views.place import ListView
 
 
 urls = [

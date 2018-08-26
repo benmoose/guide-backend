@@ -27,7 +27,7 @@ def data_model(cls):
 def get_attr_ib_dict(slots):
     output = {}
     for field in slots:
-        output[field] = attr.ib()
+        output[field] = attr.ib(default=None)
     return output
 
 
@@ -36,7 +36,12 @@ def get_slots_from_fields(cls):
 
 
 def from_dict(cls, data):
-    return cls(**data)
+    obj = cls()
+    for field in cls.__slots__:
+        value = data.get(field)
+        if value is not None:
+            setattr(obj, field, value)
+    return obj
 
 
 def safe_from_dict(cls, data):

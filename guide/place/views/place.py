@@ -1,10 +1,9 @@
-import json
-
 from guide.common.http import parse_body_to_dict
 from django.http import JsonResponse, HttpResponseBadRequest
 from django.views import View
 
-from .data_models.place import Place
+from ..data_models.place import Place
+from ..interface.place import get_all_places
 
 
 class ListView(View):
@@ -17,7 +16,9 @@ class ListView(View):
 
         db_place = place.to_db_model()
         db_place.save()
-        return JsonResponse(place.to_dict())
+        return JsonResponse(place.to_dict(), status=201)
 
     def get(self, request):
-        return JsonResponse(dict(message='hello, world!'))
+        places = get_all_places()
+        print(places)
+        return JsonResponse({})

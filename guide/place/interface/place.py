@@ -7,20 +7,7 @@ def get_all_places():
     return _db_models_to_data_models(Place, db_places)
 
 
-def create_place(
-    lat,
-    lng,
-    display_name,
-    display_address,
-    description='',
-):
-    place = Place(
-        lat=lat,
-        lng=lng,
-        display_name=display_name,
-        display_address=display_address,
-        description=description,
-    )
+def persist_place(place):
     db_model = place.to_db_model()
     db_model.save()  # db_model now has a pk
     return Place.from_db_model(db_model)

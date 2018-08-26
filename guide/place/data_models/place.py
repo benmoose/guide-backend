@@ -14,6 +14,7 @@ class Location:
 @data_model
 class Place:
     __slots__ = (
+        'pk',
         'location',
         'display_name',
         'display_address',
@@ -32,10 +33,11 @@ class Place:
     @classmethod
     def from_db_model(cls, db_model):
         return cls(
+            pk=db_model.pk,
             location=Location(lat=db_model.lat, lng=db_model.lng),
             display_name=db_model.display_name,
             display_address=db_model.display_address,
-            description=db_model.description,
+            description=db_model.description if db_model.description is not '' else None,
         )
 
     def to_db_model(self):
@@ -44,5 +46,5 @@ class Place:
             lng=self.location.lng,
             display_name=self.display_name,
             display_address=self.display_address,
-            description=self.description,
+            description=self.description if self.description is not None else '',
         )

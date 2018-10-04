@@ -1,4 +1,4 @@
 attrs==18.1.0
-Django==2.1
+Django>=2.1.2,<2.99
 psycopg2-binary==2.7.5
 pytz==2018.5
